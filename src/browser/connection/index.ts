@@ -134,7 +134,12 @@ export default class BrowserConnection extends EventEmitter {
                 await promisifyEvent(this, 'ready');
 
             this.opened = true;
+
+            console.log('this.opened = true');
+
             this.emit('opened');
+
+            console.log('this.emit(\'opened\');');
         }
         catch (err) {
             this.emit('error', new GeneralError(
