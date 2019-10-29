@@ -237,7 +237,9 @@ export default class BrowserProvider {
     }
 
     public async openBrowser (browserId: string, pageUrl: string, browserName: string, allowMultipleWindows: boolean): Promise<void> {
+        console.log('openBrowser');
         await this.plugin.openBrowser(browserId, pageUrl, browserName, allowMultipleWindows);
+        console.log('after plugin.openBrowser');
 
         if (await this._canUseDefaultWindowActions(browserId))
             await this._ensureBrowserWindowParameters(browserId);

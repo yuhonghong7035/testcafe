@@ -30,12 +30,17 @@ export default class BrowserProviderPluginHost {
     }
 
     waitForConnectionReady (browserId) {
+        console.log('*');
         const connection = BrowserConnection.getById(browserId);
 
         if (connection.ready)
             return Promise.resolve();
 
-        return promisifyEvent(connection, 'ready');
+        const res = promisifyEvent(connection, 'ready');
+
+        console.log('**');
+
+        return res;
     }
 
     reportWarning (browserId, ...args) {

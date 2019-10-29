@@ -128,7 +128,7 @@ export default class BrowserConnection extends EventEmitter {
 
     private async _runBrowser (): Promise<void> {
         try {
-            console.log('_runBrowser');
+            console.log('_runBrowser: ' + this.ready);
 
             await this.provider.openBrowser(this.id, this.url, this.browserInfo.browserName, this.allowMultipleWindows);
 

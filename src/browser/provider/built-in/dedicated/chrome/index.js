@@ -22,8 +22,11 @@ export default {
     },
 
     async openBrowser (browserId, pageUrl, configString, allowMultipleWindows) {
+        console.log('chrome open browser');
         const parsedPageUrl = parseUrl(pageUrl);
         const runtimeInfo   = await getRuntimeInfo(parsedPageUrl.hostname, configString, allowMultipleWindows);
+
+        console.log('1');
 
         runtimeInfo.browserName = this._getBrowserName();
         runtimeInfo.browserId   = browserId;
@@ -34,15 +37,23 @@ export default {
 
         await startLocalChrome(pageUrl, runtimeInfo);
 
+        console.log('2');
+
         await this.waitForConnectionReady(browserId);
+
+        console.log('3');
 
         runtimeInfo.viewportSize = await this.runInitScript(browserId, GET_WINDOW_DIMENSIONS_INFO_SCRIPT);
 
         await cdp.createClient(runtimeInfo);
 
+        console.log('4');
+
         this.openedBrowsers[browserId] = runtimeInfo;
 
         await this._ensureWindowIsExpanded(browserId, runtimeInfo.viewportSize);
+
+        console.log('5');
     },
 
     async closeBrowser (browserId) {
