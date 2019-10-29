@@ -7,9 +7,14 @@ const browserStarter = new BrowserStarter();
 
 export async function start (pageUrl, { browserName, config, cdpPort, tempProfileDir, inDocker }) {
     const chromeInfo           = await browserTools.getBrowserInfo(config.path || browserName);
+
+    console.log(JSON.stringify(chromeInfo));
+
     const chromeOpenParameters = Object.assign({}, chromeInfo);
 
     chromeOpenParameters.cmd = buildChromeArgs({ config, cdpPort, platformArgs: chromeOpenParameters.cmd, tempProfileDir, inDocker });
+
+    console.log(chromeOpenParameters.cmd);
 
     await browserStarter.startBrowser(chromeOpenParameters, pageUrl);
 }

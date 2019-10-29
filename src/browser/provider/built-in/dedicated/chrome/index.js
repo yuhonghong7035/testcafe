@@ -22,7 +22,7 @@ export default {
     },
 
     async openBrowser (browserId, pageUrl, configString, allowMultipleWindows) {
-        console.log('chrome open browser');
+        console.log('chrome open browser: ' + pageUrl);
         const parsedPageUrl = parseUrl(pageUrl);
         const runtimeInfo   = await getRuntimeInfo(parsedPageUrl.hostname, configString, allowMultipleWindows);
 

@@ -66,6 +66,8 @@ export default class BrowserConnectionGateway {
 
     // Route handlers
     static onConnection (req, res, connection) {
+        console.log('on connection');
+
         if (connection.ready)
             respond500(res, 'The connection is already established.');
 
