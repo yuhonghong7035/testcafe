@@ -339,6 +339,8 @@ export default class BrowserConnection extends EventEmitter {
     }
 
     public establish (userAgent: string): void {
+        console.log('connection establish');
+        
         this.ready = true;
 
         const parsedUserAgent = parseUserAgent(userAgent);
