@@ -26,12 +26,13 @@ export interface RunTestArguments {
 
 export interface ExecuteCommandArguments {
     id: string;
+    apiMethodName: string;
     command: unknown;
     callsite: unknown;
 }
 
 export interface TestRunDispatcherProtocol {
-    executeCommand ({ id, command, callsite }: ExecuteCommandArguments): Promise<unknown>;
+    executeAction ({ id, apiMethodName, command, callsite }: ExecuteCommandArguments): Promise<unknown>;
 }
 
 export interface CompilerProtocol extends TestRunDispatcherProtocol {

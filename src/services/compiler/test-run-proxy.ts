@@ -22,11 +22,11 @@ class TestRunMock {
         testRunTracker.activeTestRuns[id] = this;
     }
 
-    public async executeCommand (command: unknown, callsite: unknown): Promise<unknown> {
+    public async executeAction (apiMethodName: string, command: unknown, callsite: unknown): Promise<unknown> {
         if (callsite)
             callsite = prerenderCallsite(callsite);
 
-        return await this.dispatcher.executeCommand({ command, callsite, id: this.id });
+        return await this.dispatcher.executeAction({ apiMethodName, command, callsite, id: this.id });
     }
 }
 

@@ -33,7 +33,7 @@ export default class CompilerHost extends EventEmitter implements CompilerProtoc
     }
 
     private _setupRoutes (proxy: IPCProxy): void {
-        proxy.register(this.executeCommand, this);
+        proxy.register(this.executeAction, this);
         proxy.register(this.ready, this);
     }
 
@@ -104,13 +104,13 @@ export default class CompilerHost extends EventEmitter implements CompilerProtoc
         this.emit('ready');
     }
 
-    public async executeCommand (data: ExecuteCommandArguments): Promise<unknown> {
+    public async executeAction (data: ExecuteCommandArguments): Promise<unknown> {
         if (!testRunTracker.activeTestRuns[data.id])
             return void 0;
 
         return testRunTracker
             .activeTestRuns[data.id]
-            .executeCommand(data.command, data.callsite);
+            .executeAction(data.apiMethodName, data.command, data.callsite);
     }
 
     public async getTests ({ sourceList, compilerOptions }: CompilerArguments): Promise<Test[]> {

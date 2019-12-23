@@ -1,6 +1,6 @@
 export interface TestRun {
     id: string;
-    executeCommand(command: unknown, callsite: unknown): Promise<unknown>;
+    executeAction(apiMethodName: string, command: unknown, callsite: unknown): Promise<unknown>;
 }
 
 export interface TestRunTracker {

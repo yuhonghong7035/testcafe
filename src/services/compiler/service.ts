@@ -126,8 +126,8 @@ class CompilerService implements CompilerProtocol {
         return await functionObject(context);
     }
 
-    public async executeCommand ({ id, command, callsite }: ExecuteCommandArguments): Promise<unknown> {
-        return this.proxy.call(this.executeCommand, { id, command, callsite });
+    public async executeAction ({ id, apiMethodName, command, callsite }: ExecuteCommandArguments): Promise<unknown> {
+        return this.proxy.call(this.executeAction, { id, apiMethodName, command, callsite });
     }
 }
 
